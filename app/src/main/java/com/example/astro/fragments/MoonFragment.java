@@ -1,15 +1,18 @@
 package com.example.astro.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.astrocalculator.AstroCalculator;
 import com.example.astro.R;
@@ -36,13 +39,26 @@ public class MoonFragment extends Fragment {
         TextView tvMnPhase = (TextView)rootView.findViewById(R.id.tvMnPhase);
         TextView tvMnSynDay = (TextView)rootView.findViewById(R.id.tvMnSynDay);
 
+        float latitude;
+        float longitude;
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        try {
+            latitude = sharedPref.getFloat("latitude", 0);
+            longitude = sharedPref.getFloat("longitude", 0);
+        }catch(Exception e){
+            latitude = 0;
+            longitude = 0;
+        }
 
 
-        location = new AstroCalculator.Location(-51.74, 19.44);
+
+        location = new AstroCalculator.Location(latitude, longitude);
         SunFragment sunFragment = new SunFragment();
         AstroCalculator astroCalculator = new AstroCalculator(sunFragment.AstroDateTime(), location);
         tvTimer = (TextView)rootView.findViewById(R.id.tvTimer);
         content();
+
+
 
         tvMnRiseTime.setText(astroCalculator.getMoonInfo().getMoonrise().getHour() + ":" + astroCalculator.getMoonInfo().getMoonrise().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonrise().getSecond());
         tvMnDawnTime.setText(astroCalculator.getMoonInfo().getMoonset().getHour() + ":" + astroCalculator.getMoonInfo().getMoonset().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonset().getSecond());

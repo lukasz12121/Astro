@@ -9,14 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AstroActivity"
-            android:configChanges="orientation|keyboardHidden"></activity>
-        <activity android:name=".WeatherActivity"
-            android:configChanges="orientation|keyboardHidden"></activity>
-        <activity android:name=".SettingsActivity"></activity>
+        <activity
+            android:name=".SettingsPrefences"
+            android:label="@string/title_activity_settings_prefences"></activity>
+        <activity
+            android:name=".AstroActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".WeatherActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -3,13 +3,15 @@ package com.example.astro.fragments;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
@@ -43,9 +45,18 @@ public class SunFragment extends Fragment {
 
         tvTimer = (TextView)rootView.findViewById(R.id.tvTimer);
         content();
+        float latitude;
+        float longitude;
 
-
-        location = new AstroCalculator.Location(51.74, 19.44);
+        try {
+             latitude = Float.parseFloat(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("latitude", "0"));
+             longitude = Float.parseFloat(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("longitude", "0"));
+        }catch(Exception e){
+            latitude = 0;
+            longitude = 0;
+        }
+        tvCoords.setText(latitude + " " + longitude);
+        location = new AstroCalculator.Location(latitude, longitude);
         AstroCalculator astroCalculator = new AstroCalculator(AstroDateTime(), location);
         int month = astroCalculator.getSunInfo().getSunrise().getMonth();
         int day = astroCalculator.getSunInfo().getSunrise().getDay();
