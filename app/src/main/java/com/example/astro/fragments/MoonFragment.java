@@ -1,8 +1,6 @@
 package com.example.astro.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -13,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.astrocalculator.AstroCalculator;
 import com.example.astro.R;
@@ -38,44 +37,54 @@ public class MoonFragment extends Fragment {
         TextView tvMnFullDate = (TextView)rootView.findViewById(R.id.tvMnFullDate);
         TextView tvMnPhase = (TextView)rootView.findViewById(R.id.tvMnPhase);
         TextView tvMnSynDay = (TextView)rootView.findViewById(R.id.tvMnSynDay);
+        TextView tvCoords = (TextView)rootView.findViewById(R.id.tvCoords2);
 
         float latitude;
         float longitude;
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        int refresh_Freq = 0;
+
         try {
-            latitude = sharedPref.getFloat("latitude", 0);
-            longitude = sharedPref.getFloat("longitude", 0);
+            latitude = Float.parseFloat(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("latitude", "0"));
+            longitude = Float.parseFloat(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("longitude", "0"));
+            refresh_Freq = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("refresh", "0"));
         }catch(Exception e){
             latitude = 0;
             longitude = 0;
         }
 
 
-
+        //contentRefresh(refresh_Freq);
         location = new AstroCalculator.Location(latitude, longitude);
         SunFragment sunFragment = new SunFragment();
         AstroCalculator astroCalculator = new AstroCalculator(sunFragment.AstroDateTime(), location);
         tvTimer = (TextView)rootView.findViewById(R.id.tvTimer);
-        content();
+        timeRefresh();
 
 
-
-        tvMnRiseTime.setText(astroCalculator.getMoonInfo().getMoonrise().getHour() + ":" + astroCalculator.getMoonInfo().getMoonrise().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonrise().getSecond());
-        tvMnDawnTime.setText(astroCalculator.getMoonInfo().getMoonset().getHour() + ":" + astroCalculator.getMoonInfo().getMoonset().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonset().getSecond());
-        tvMnNewDate.setText(astroCalculator.getMoonInfo().getNextNewMoon().getDay()+"."+astroCalculator.getMoonInfo().getNextNewMoon().getMonth()+"."+astroCalculator.getMoonInfo().getNextNewMoon().getYear());
-        tvMnFullDate.setText(astroCalculator.getMoonInfo().getNextFullMoon().getDay()+"."+astroCalculator.getMoonInfo().getNextFullMoon().getMonth()+"."+astroCalculator.getMoonInfo().getNextFullMoon().getYear());
-        tvMnPhase.setText(SunFragment.round(astroCalculator.getMoonInfo().getIllumination(),2)*100+"%");
+        tvCoords.setText(latitude + " " + longitude);
+        tvMnRiseTime.setText("Wschód: " + astroCalculator.getMoonInfo().getMoonrise().getHour() + ":" + astroCalculator.getMoonInfo().getMoonrise().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonrise().getSecond());
+        tvMnDawnTime.setText("Zachód: " + astroCalculator.getMoonInfo().getMoonset().getHour() + ":" + astroCalculator.getMoonInfo().getMoonset().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonset().getSecond());
+        tvMnNewDate.setText("Najbliższy nów: "  + astroCalculator.getMoonInfo().getNextNewMoon().getDay()+"."+astroCalculator.getMoonInfo().getNextNewMoon().getMonth()+"."+astroCalculator.getMoonInfo().getNextNewMoon().getYear());
+        tvMnFullDate.setText("Najbliższa pełnia: " + astroCalculator.getMoonInfo().getNextFullMoon().getDay()+"."+astroCalculator.getMoonInfo().getNextFullMoon().getMonth()+"."+astroCalculator.getMoonInfo().getNextFullMoon().getYear());
+        tvMnPhase.setText(" Faza księżyca:  " + SunFragment.round(astroCalculator.getMoonInfo().getIllumination(),2)*100+"%");
 
 
         Date nextNewMoonDate = new GregorianCalendar(astroCalculator.getMoonInfo().getNextNewMoon().getYear(), astroCalculator.getMoonInfo().getNextNewMoon().getMonth()-1, astroCalculator.getMoonInfo().getNextNewMoon().getDay(), 23, 59).getTime();
         Date today = new Date();
         long diff =  today.getTime() - nextNewMoonDate.getTime();
         int lunarMonthDay = (int) (diff / (1000 * 60 * 60 * 24))+29;
-        tvMnSynDay.setText(String.valueOf(lunarMonthDay));
+        tvMnSynDay.setText("Dzień miesiąca synodycznego: " + String.valueOf(lunarMonthDay));
 
         return rootView;
     }
-    public void content(){
+    public void contentRefresh(int time){
+        SimpleDateFormat formatter= new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        //tvTimer.setText(formatter.format(date));
+        time = time * 60 * 1000;
+        refresh(time);
+    }
+    public void timeRefresh(){
         SimpleDateFormat formatter= new SimpleDateFormat("HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
         tvTimer.setText(formatter.format(date));
@@ -87,7 +96,8 @@ public class MoonFragment extends Fragment {
         final Runnable  runnable = new Runnable() {
             @Override
             public void run() {
-                content();
+                timeRefresh();
+                //contentRefresh(0);
             }
         };
         handler.postDelayed(runnable, miliseconds);

@@ -1,9 +1,12 @@
 package com.example.astro;
 
 import android.os.Bundle;
+import android.text.InputType;
+import android.widget.EditText;
 
-import androidx.appcompat.app.ActionBar;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.EditTextPreference;
 import androidx.preference.PreferenceFragmentCompat;
 
 public class SettingsPrefences extends AppCompatActivity {
@@ -16,16 +19,44 @@ public class SettingsPrefences extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.settings, new SettingsFragment())
                 .commit();
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+        try
+        {
+            this.getSupportActionBar().hide();
         }
+        catch (NullPointerException e){}
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
+            EditTextPreference latitude = findPreference("latitude");
+            EditTextPreference longitude = findPreference("longitude");
+            EditTextPreference refresh = findPreference("refresh");
+            if (latitude != null) {
+                latitude.setOnBindEditTextListener(new EditTextPreference.OnBindEditTextListener() {
+                    @Override
+                    public void onBindEditText(@NonNull EditText editText) {
+                        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    }
+                });
+            }
+            if (longitude != null) {
+                longitude.setOnBindEditTextListener(new EditTextPreference.OnBindEditTextListener() {
+                    @Override
+                    public void onBindEditText(@NonNull EditText editText) {
+                        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    }
+                });
+            }
+            if (refresh != null) {
+                refresh.setOnBindEditTextListener(new EditTextPreference.OnBindEditTextListener() {
+                    @Override
+                    public void onBindEditText(@NonNull EditText editText) {
+                        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    }
+                });
+            }
         }
     }
 }

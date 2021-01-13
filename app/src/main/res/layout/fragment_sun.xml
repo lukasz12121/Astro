@@ -9,177 +9,106 @@
 
     <TextView
         android:id="@+id/tvrSnDawnTime"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="30dp"
-        android:layout_marginTop="256dp"
-        android:layout_marginEnd="149dp"
         android:text="21:23:12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvSnRiseAzym6"
-        android:layout_width="42dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginEnd="299dp"
-        android:text="Czas:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvSnRiseAzym5"
-        android:layout_width="56dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="256dp"
-        android:layout_marginEnd="93dp"
-        android:text="Azymut:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvSnRiseAzym4"
-        android:layout_width="56dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginEnd="93dp"
-        android:text="Azymut:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvSnDawnAzym"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="256dp"
-        android:layout_marginEnd="43dp"
-        android:text="34°"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        tools:layout_editor_absoluteX="37dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="250dp"
         android:text="Słońce"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/tvCoords"
+        tools:layout_editor_absoluteX="37dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="125dp"
-        android:layout_marginEnd="268dp"
         android:text="Wschód"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvSnRiseAzym"
-        android:layout_width="50dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginEnd="43dp"
-        android:text="34"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvSnRiseAzym3"
-        android:layout_width="42dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="256dp"
-        android:layout_marginEnd="299dp"
-        android:text="Czas:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvrSnRiseTime"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_editor_absoluteX="37dp" />
 
     <TextView
         android:id="@+id/tvrSnRiseTime"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="30dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginEnd="149dp"
         android:text="06:23:12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:layout_editor_absoluteX="37dp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="218dp"
-        android:layout_marginEnd="273dp"
         android:text="Zachód"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="298dp"
-        android:layout_marginEnd="232dp"
-        android:text="Świt cywilny"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvrSnDawnTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvrSnRiseTime"
+        tools:layout_editor_absoluteX="37dp" />
 
     <TextView
         android:id="@+id/tvSnCvRise"
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:layout_marginTop="337dp"
-        android:layout_marginEnd="140dp"
         android:text="07:12:04"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="379dp"
-        android:layout_marginEnd="186dp"
-        android:text="Zmierzch cywilny"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:layout_editor_absoluteX="37dp" />
 
     <TextView
         android:id="@+id/tvSnCvDawn"
         android:layout_width="200dp"
         android:layout_height="30dp"
-        android:layout_marginTop="422dp"
-        android:layout_marginEnd="140dp"
         android:text="21:12:04"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        tools:layout_editor_absoluteX="37dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zmierzch cywilny"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvSnCvDawn"
+        app:layout_constraintTop_toBottomOf="@+id/tvSnCvRise"
+        tools:layout_editor_absoluteX="37dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Świt cywilny"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvSnCvRise"
+        app:layout_constraintTop_toBottomOf="@+id/tvrSnDawnTime"
+        tools:layout_editor_absoluteX="36dp" />
 
     <TextView
         android:id="@+id/tvTimer"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="191dp"
         android:text="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvCoords"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="37dp" />
 
     <TextView
         android:id="@+id/tvCoords"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="35dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimer"
+        tools:layout_editor_absoluteX="37dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

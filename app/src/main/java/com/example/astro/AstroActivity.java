@@ -1,10 +1,10 @@
 package com.example.astro;
 
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.astro.fragments.MoonFragment;
 import com.example.astro.fragments.SunFragment;
@@ -21,12 +21,17 @@ public class AstroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         setContentView(R.layout.activity_astro);
 
         //pobieranie danych z aktywności Settings
-        Intent intent = getIntent();
-        String sLatitude = intent.getStringExtra("LATITUDE");
-        String sLongitude = intent.getStringExtra("LONGITUDE");
+        //Intent intent = getIntent();
+        //String sLatitude = intent.getStringExtra("LATITUDE");
+        //String sLongitude = intent.getStringExtra("LONGITUDE");
 
         getSupportFragmentManager();
 
