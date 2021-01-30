@@ -20,5 +20,17 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Refresh time" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="units"
+        android:summaryOff="Metric system"
+        android:summaryOn="Imperial system"
+        android:title="Units" />
+    <EditTextPreference
+        android:defaultValue="false"
+        android:key="location1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Location" />
 
 </PreferenceScreen>

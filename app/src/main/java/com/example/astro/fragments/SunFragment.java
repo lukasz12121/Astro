@@ -42,15 +42,14 @@ public class SunFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_sun,container,false);
 
+        tvSnRiseTime = (TextView)rootView.findViewById(R.id.tvrSnRiseTime);
+        tvSnDawnTime = (TextView)rootView.findViewById(R.id.tvrSnDawnTime);
+        tvSnCvRise = (TextView)rootView.findViewById(R.id.tvSnCvRise);
+        tvSnCvDawn = (TextView)rootView.findViewById(R.id.tvSnCvDawn);
+        tvCoords = (TextView)rootView.findViewById(R.id.tvCoords);
 
-         tvSnRiseTime = (TextView)rootView.findViewById(R.id.tvrSnRiseTime);
-         tvSnDawnTime = (TextView)rootView.findViewById(R.id.tvrSnDawnTime);
-         tvSnCvRise = (TextView)rootView.findViewById(R.id.tvSnCvRise);
-         tvSnCvDawn = (TextView)rootView.findViewById(R.id.tvSnCvDawn);
-         tvCoords = (TextView)rootView.findViewById(R.id.tvCoords);
-
-         tvTimer = (TextView)rootView.findViewById(R.id.tvTimer);
-         timerRefresh();
+        tvTimer = (TextView)rootView.findViewById(R.id.tvTimer);
+        timerRefresh();
 
         try {
              latitude = Float.parseFloat(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("latitude", "0"));
@@ -64,21 +63,11 @@ public class SunFragment extends Fragment {
         tvCoords.setText(latitude + " " + longitude);
         location = new AstroCalculator.Location(latitude, longitude);
         AstroCalculator astroCalculator = new AstroCalculator(AstroDateTime(), location);
-        String sunRiseTime = "Czas: " + astroCalculator.getSunInfo().getSunrise().getHour() + ":" + astroCalculator.getSunInfo().getSunrise().getMinute() + ":"+ astroCalculator.getSunInfo().getSunrise().getSecond();
-        String sunsSetTime = "Czas: " + astroCalculator.getSunInfo().getSunset().getHour() + ":" + astroCalculator.getSunInfo().getSunset().getMinute() + ":"+ astroCalculator.getSunInfo().getSunset().getSecond();
-        /*int month = astroCalculator.getSunInfo().getSunrise().getMonth();
-        int day = astroCalculator.getSunInfo().getSunrise().getDay();
+        String sunRiseTime = "Time: " + astroCalculator.getSunInfo().getSunrise().getHour() + ":" + astroCalculator.getSunInfo().getSunrise().getMinute() + ":"+ astroCalculator.getSunInfo().getSunrise().getSecond();
+        String sunsSetTime = "Time: " + astroCalculator.getSunInfo().getSunset().getHour() + ":" + astroCalculator.getSunInfo().getSunset().getMinute() + ":"+ astroCalculator.getSunInfo().getSunset().getSecond();
 
-        if(month > 3 && month < 10){
-            tvSnRiseTime.setText(astroCalculator.getSunInfo().getSunrise().getHour() + ":" + astroCalculator.getSunInfo().getSunrise().getMinute() + ":"+ astroCalculator.getSunInfo().getSunrise().getSecond());
-            tvSnDawnTime.setText(astroCalculator.getSunInfo().getSunset().getHour() + ":" + astroCalculator.getSunInfo().getSunset().getMinute() + ":"+ astroCalculator.getSunInfo().getSunset().getSecond());
-        }else{
-            tvSnRiseTime.setText((astroCalculator.getSunInfo().getSunrise().getHour() - 1) + ":" + astroCalculator.getSunInfo().getSunrise().getMinute() + ":"+ astroCalculator.getSunInfo().getSunrise().getSecond());
-            tvSnDawnTime.setText((astroCalculator.getSunInfo().getSunset().getHour() - 1) + ":" + astroCalculator.getSunInfo().getSunset().getMinute() + ":"+ astroCalculator.getSunInfo().getSunset().getSecond());
-        }*/
-
-        String riseAzim = "Azymut" +  round(astroCalculator.getSunInfo().getAzimuthRise(), 2) + "°";
-        String dawnAzim = "Azymut" + round(astroCalculator.getSunInfo().getAzimuthSet(),2)+"°";
+        String riseAzim = " Azimuth: " +  round(astroCalculator.getSunInfo().getAzimuthRise(), 2) + "°";
+        String dawnAzim = " Azimuth: " + round(astroCalculator.getSunInfo().getAzimuthSet(),2)+"°";
         tvSnRiseTime.setText(sunRiseTime + "   " + riseAzim);
         tvSnDawnTime.setText(sunsSetTime + "   " + dawnAzim);
         tvSnCvRise.setText(String.valueOf(astroCalculator.getSunInfo().getTwilightMorning()));

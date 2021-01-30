@@ -23,8 +23,8 @@ import java.util.GregorianCalendar;
 public class MoonFragment extends Fragment {
 
     TextView tvTimer;
-
     private AstroCalculator.Location location;
+
     @SuppressLint("SetTextI18n")
     @Nullable
     @Override
@@ -62,18 +62,18 @@ public class MoonFragment extends Fragment {
 
 
         tvCoords.setText(latitude + " " + longitude);
-        tvMnRiseTime.setText("Wschód: " + astroCalculator.getMoonInfo().getMoonrise().getHour() + ":" + astroCalculator.getMoonInfo().getMoonrise().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonrise().getSecond());
-        tvMnDawnTime.setText("Zachód: " + astroCalculator.getMoonInfo().getMoonset().getHour() + ":" + astroCalculator.getMoonInfo().getMoonset().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonset().getSecond());
-        tvMnNewDate.setText("Najbliższy nów: "  + astroCalculator.getMoonInfo().getNextNewMoon().getDay()+"."+astroCalculator.getMoonInfo().getNextNewMoon().getMonth()+"."+astroCalculator.getMoonInfo().getNextNewMoon().getYear());
-        tvMnFullDate.setText("Najbliższa pełnia: " + astroCalculator.getMoonInfo().getNextFullMoon().getDay()+"."+astroCalculator.getMoonInfo().getNextFullMoon().getMonth()+"."+astroCalculator.getMoonInfo().getNextFullMoon().getYear());
-        tvMnPhase.setText(" Faza księżyca:  " + SunFragment.round(astroCalculator.getMoonInfo().getIllumination(),2)*100+"%");
+        tvMnRiseTime.setText("Moonrise: " + astroCalculator.getMoonInfo().getMoonrise().getHour() + ":" + astroCalculator.getMoonInfo().getMoonrise().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonrise().getSecond());
+        tvMnDawnTime.setText("Moonset: " + astroCalculator.getMoonInfo().getMoonset().getHour() + ":" + astroCalculator.getMoonInfo().getMoonset().getMinute() + ":" + astroCalculator.getMoonInfo().getMoonset().getSecond());
+        tvMnNewDate.setText("Nearest new moon: "  + astroCalculator.getMoonInfo().getNextNewMoon().getDay()+"."+astroCalculator.getMoonInfo().getNextNewMoon().getMonth()+"."+astroCalculator.getMoonInfo().getNextNewMoon().getYear());
+        tvMnFullDate.setText("Nearest full moon: " + astroCalculator.getMoonInfo().getNextFullMoon().getDay()+"."+astroCalculator.getMoonInfo().getNextFullMoon().getMonth()+"."+astroCalculator.getMoonInfo().getNextFullMoon().getYear());
+        tvMnPhase.setText("Lunar phase:  " + SunFragment.round(astroCalculator.getMoonInfo().getIllumination(),2)*100+"%");
 
 
         Date nextNewMoonDate = new GregorianCalendar(astroCalculator.getMoonInfo().getNextNewMoon().getYear(), astroCalculator.getMoonInfo().getNextNewMoon().getMonth()-1, astroCalculator.getMoonInfo().getNextNewMoon().getDay(), 23, 59).getTime();
         Date today = new Date();
         long diff =  today.getTime() - nextNewMoonDate.getTime();
         int lunarMonthDay = (int) (diff / (1000 * 60 * 60 * 24))+29;
-        tvMnSynDay.setText("Dzień miesiąca synodycznego: " + String.valueOf(lunarMonthDay));
+        tvMnSynDay.setText("Day of Lunar Month: " + String.valueOf(lunarMonthDay));
 
         return rootView;
     }

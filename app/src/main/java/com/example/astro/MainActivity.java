@@ -22,19 +22,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnWeather = (Button)findViewById(R.id.btnWeather);
-        btnWeather.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WeatherActivity.class));
-            }
-        });
-
         Button btnSettings = (Button)findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SettingsPrefences.class));
+                startActivity(new Intent(MainActivity.this, SettingsPreferences.class));
             }
         });
 

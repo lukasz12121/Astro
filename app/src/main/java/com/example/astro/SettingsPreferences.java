@@ -8,8 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.EditTextPreference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreference;
 
-public class SettingsPrefences extends AppCompatActivity {
+public class SettingsPreferences extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,10 @@ public class SettingsPrefences extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             EditTextPreference latitude = findPreference("latitude");
             EditTextPreference longitude = findPreference("longitude");
+            SwitchPreference units = findPreference("units");
             EditTextPreference refresh = findPreference("refresh");
+            EditTextPreference location1 = findPreference("location1");
+
             if (latitude != null) {
                 latitude.setOnBindEditTextListener(new EditTextPreference.OnBindEditTextListener() {
                     @Override
@@ -57,6 +61,15 @@ public class SettingsPrefences extends AppCompatActivity {
                     }
                 });
             }
+            if (location1 != null) {
+                location1.setOnBindEditTextListener(new EditTextPreference.OnBindEditTextListener() {
+                    @Override
+                    public void onBindEditText(@NonNull EditText editText) {
+                        editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                    }
+                });
+            }
+
         }
     }
 }

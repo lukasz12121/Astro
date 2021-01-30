@@ -7,12 +7,12 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnWeather"
+        android:id="@+id/btnSettings"
         android:layout_width="400dp"
         android:layout_height="150dp"
-        android:layout_marginTop="548dp"
+        android:layout_marginTop="612dp"
         android:layout_marginEnd="200dp"
-        android:text="Weather"
+        android:text="Settings"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,20 +21,9 @@
         android:id="@+id/btnExit"
         android:layout_width="400dp"
         android:layout_height="150dp"
-        android:layout_marginTop="940dp"
+        android:layout_marginTop="832dp"
         android:layout_marginEnd="200dp"
         android:text="Exit"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnSettings"
-        android:layout_width="400dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="720dp"
-        android:layout_marginEnd="200dp"
-        android:text="Settings"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,9 +32,9 @@
         android:id="@+id/btnAstro"
         android:layout_width="400dp"
         android:layout_height="150dp"
-        android:layout_marginTop="372dp"
+        android:layout_marginTop="412dp"
         android:layout_marginEnd="200dp"
-        android:text="Astro"
+        android:text="AstroWeather"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
