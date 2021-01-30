@@ -23,8 +23,17 @@ import java.util.Locale;
 
 public class SunFragment extends Fragment {
 
-
+    TextView tvSnRiseTime;
+    TextView tvSnDawnTime;
+    TextView tvSnCvRise;
+    TextView tvSnCvDawn;
+    TextView tvCoords;
     TextView tvTimer;
+    int refresh_Freq;
+    float latitude;
+    float longitude;
+
+
 
     private AstroCalculator.Location location;
     @SuppressLint("SetTextI18n")
@@ -33,43 +42,34 @@ public class SunFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_sun,container,false);
 
-
-        TextView tvSnRiseTime = (TextView)rootView.findViewById(R.id.tvrSnRiseTime);
-        TextView tvSnDawnTime = (TextView)rootView.findViewById(R.id.tvrSnDawnTime);
-        TextView tvSnRiseAzym = (TextView)rootView.findViewById(R.id.tvSnRiseAzym);
-        TextView tvSnDawnAzym = (TextView)rootView.findViewById(R.id.tvSnDawnAzym);
-        TextView tvSnCvRise = (TextView)rootView.findViewById(R.id.tvSnCvRise);
-        TextView tvSnCvDawn = (TextView)rootView.findViewById(R.id.tvSnCvDawn);
-        TextView tvCoords = (TextView)rootView.findViewById(R.id.tvCoords);
-
+        tvSnRiseTime = (TextView)rootView.findViewById(R.id.tvrSnRiseTime);
+        tvSnDawnTime = (TextView)rootView.findViewById(R.id.tvrSnDawnTime);
+        tvSnCvRise = (TextView)rootView.findViewById(R.id.tvSnCvRise);
+        tvSnCvDawn = (TextView)rootView.findViewById(R.id.tvSnCvDawn);
+        tvCoords = (TextView)rootView.findViewById(R.id.tvCoords);
 
         tvTimer = (TextView)rootView.findViewById(R.id.tvTimer);
-        content();
-        float latitude;
-        float longitude;
+        timerRefresh();
 
         try {
              latitude = Float.parseFloat(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("latitude", "0"));
              longitude = Float.parseFloat(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("longitude", "0"));
+             refresh_Freq = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("refresh", "0"));
         }catch(Exception e){
             latitude = 0;
             longitude = 0;
         }
+       // contentRefresh(refresh_Freq);
         tvCoords.setText(latitude + " " + longitude);
         location = new AstroCalculator.Location(latitude, longitude);
         AstroCalculator astroCalculator = new AstroCalculator(AstroDateTime(), location);
-        int month = astroCalculator.getSunInfo().getSunrise().getMonth();
-        int day = astroCalculator.getSunInfo().getSunrise().getDay();
-        if(month > 3 && month < 10){
-            tvSnRiseTime.setText(astroCalculator.getSunInfo().getSunrise().getHour() + ":" + astroCalculator.getSunInfo().getSunrise().getMinute() + ":"+ astroCalculator.getSunInfo().getSunrise().getSecond());
-            tvSnDawnTime.setText(astroCalculator.getSunInfo().getSunset().getHour() + ":" + astroCalculator.getSunInfo().getSunset().getMinute() + ":"+ astroCalculator.getSunInfo().getSunset().getSecond());
-        }else{
-            tvSnRiseTime.setText((astroCalculator.getSunInfo().getSunrise().getHour() - 1) + ":" + astroCalculator.getSunInfo().getSunrise().getMinute() + ":"+ astroCalculator.getSunInfo().getSunrise().getSecond());
-            tvSnDawnTime.setText((astroCalculator.getSunInfo().getSunset().getHour() - 1) + ":" + astroCalculator.getSunInfo().getSunset().getMinute() + ":"+ astroCalculator.getSunInfo().getSunset().getSecond());
-        }
+        String sunRiseTime = "Time: " + astroCalculator.getSunInfo().getSunrise().getHour() + ":" + astroCalculator.getSunInfo().getSunrise().getMinute() + ":"+ astroCalculator.getSunInfo().getSunrise().getSecond();
+        String sunsSetTime = "Time: " + astroCalculator.getSunInfo().getSunset().getHour() + ":" + astroCalculator.getSunInfo().getSunset().getMinute() + ":"+ astroCalculator.getSunInfo().getSunset().getSecond();
 
-        tvSnRiseAzym.setText(round(astroCalculator.getSunInfo().getAzimuthRise(), 2) + "°");
-        tvSnDawnAzym.setText(round(astroCalculator.getSunInfo().getAzimuthSet(),2)+"°");
+        String riseAzim = " Azimuth: " +  round(astroCalculator.getSunInfo().getAzimuthRise(), 2) + "°";
+        String dawnAzim = " Azimuth: " + round(astroCalculator.getSunInfo().getAzimuthSet(),2)+"°";
+        tvSnRiseTime.setText(sunRiseTime + "   " + riseAzim);
+        tvSnDawnTime.setText(sunsSetTime + "   " + dawnAzim);
         tvSnCvRise.setText(String.valueOf(astroCalculator.getSunInfo().getTwilightMorning()));
         tvSnCvDawn.setText(String.valueOf(astroCalculator.getSunInfo().getTwilightEvening()));
 
@@ -98,19 +98,35 @@ public class SunFragment extends Fragment {
         return (double) tmp / factor;
     }
 
-    public void content(){
+    public void contentRefresh(int time){
+        SimpleDateFormat formatter= new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        AstroCalculator astroCalculator = new AstroCalculator(AstroDateTime(), location);
+        String sunRiseTime = "Czas: " + astroCalculator.getSunInfo().getSunrise().getHour() + ":" + astroCalculator.getSunInfo().getSunrise().getMinute() + ":"+ astroCalculator.getSunInfo().getSunrise().getSecond();
+        String sunsSetTime = "Czas: " + astroCalculator.getSunInfo().getSunset().getHour() + ":" + astroCalculator.getSunInfo().getSunset().getMinute() + ":"+ astroCalculator.getSunInfo().getSunset().getSecond();
+        String riseAzim = "Azymut: " +  round(astroCalculator.getSunInfo().getAzimuthRise(), 2) + "°";
+        String dawnAzim = "Azymut: " + round(astroCalculator.getSunInfo().getAzimuthSet(),2)+"°";
+        tvSnRiseTime.setText(sunRiseTime + "   " + riseAzim);
+        tvSnDawnTime.setText(sunsSetTime + "   " + dawnAzim);
+        tvSnCvRise.setText(String.valueOf(astroCalculator.getSunInfo().getTwilightMorning()));
+        tvSnCvDawn.setText(String.valueOf(astroCalculator.getSunInfo().getTwilightEvening()));
+        time = time * 60 * 1000;
+        refresh(time);
+    }
+    public void timerRefresh(){
         SimpleDateFormat formatter= new SimpleDateFormat("HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
         tvTimer.setText(formatter.format(date));
-
         refresh(1000);
     }
+
     public void refresh(int miliseconds){
         final Handler handler = new Handler();
         final Runnable  runnable = new Runnable() {
             @Override
             public void run() {
-                content();
+                timerRefresh();
+                //contentRefresh(refresh_Freq);
             }
         };
         handler.postDelayed(runnable, miliseconds);

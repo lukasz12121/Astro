@@ -4,105 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0E0E0">
+    android:background="#99CCFF">
 
     <TextView
-        android:id="@+id/tvCoords2"
+        android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTimer" />
-
-    <TextView
-        android:id="@+id/tvTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="time"
-        app:layout_constraintBottom_toTopOf="@+id/tvCoords2"
+        android:text="Additional information"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView26"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvMnSynDay"
+        android:id="@+id/textView26"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="13"
+        android:layout_height="wrap_content"
+        android:text="Wind speed"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvWindSpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/tvWindSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        app:layout_constraintBottom_toTopOf="@+id/textView28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wind direction"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvWindDirection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWindSpeed" />
+
+    <TextView
+        android:id="@+id/tvWindDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        app:layout_constraintBottom_toTopOf="@+id/textView30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humidity"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvHumidity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWindDirection" />
+
+    <TextView
+        android:id="@+id/tvHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        app:layout_constraintBottom_toTopOf="@+id/textView32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visibility"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvVisibility"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHumidity" />
+
+    <TextView
+        android:id="@+id/tvVisibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMnPhase" />
-
-    <TextView
-        android:id="@+id/tvMnPhase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="50%"
-        app:layout_constraintBottom_toTopOf="@+id/tvMnSynDay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMnFullDate" />
-
-    <TextView
-        android:id="@+id/tvMnFullDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="28/02/2020"
-        app:layout_constraintBottom_toTopOf="@+id/tvMnPhase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMnNewDate" />
-
-    <TextView
-        android:id="@+id/tvMnNewDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12/02/2020"
-        app:layout_constraintBottom_toTopOf="@+id/tvMnFullDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMnDawnTime" />
-
-    <TextView
-        android:id="@+id/tvMnDawnTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="21:12:04"
-        app:layout_constraintBottom_toTopOf="@+id/tvMnNewDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMnRiseTime" />
-
-    <TextView
-        android:id="@+id/tvMnRiseTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="06:23:12"
-        app:layout_constraintBottom_toTopOf="@+id/tvMnDawnTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Moon"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvMnRiseTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCoords2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
 </androidx.constraintlayout.widget.ConstraintLayout>
